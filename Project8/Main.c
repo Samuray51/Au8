@@ -1,252 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <locale.h>
-#include <windows.h>
-struct DList
-{
-	float value;
-	struct DList* prev;
-	struct DList* next;
-};
-typedef struct DList DLIST;
-
-
-
-
-
-
-
-void outputToRight(DLIST *head)
-{
-	printf("Вывод с начала: ");
-	while (head != 0)
-	{
-		if (head->next != 0)
-		{
-			printf("%.8f -> ", head->value);
-		}
-		else
-		{
-			printf("%.8f\n", head->value);
-		}
-		head = head->next;
-	}
-}
-
-
-
-void outputToLeft(DLIST *tail)
-{
-	printf("Вывод с конца: ");
-	while (tail != 0)
-	{
-		if (tail->prev != 0)
-		{
-			printf("%.8f -> ", tail->value);
-		}
-		else
-		{
-			printf("%.8f\n", tail->value);
-		}
-		tail = tail->prev;
-	}
-}
-
-
-
-DLIST* addToRight(DLIST *tail)
-{
-	tail->next = (DLIST*)malloc(sizeof(DLIST));
-	tail->next->value = 1 + rand() % 100;
-	tail->next->value = 1 / tail->next->value;
-	tail->next->value = -100 + rand() % 102 + tail->next->value;
-	tail->next->next = 0;
-	tail->next->prev = tail;
-	return tail->next;
-}
-
-
-
-DLIST* addToLeft(DLIST *head)
-{
-	head->prev = (DLIST*)malloc(sizeof(DLIST));
-	head->prev->value = 1 + rand() % 100;;
-	head->prev->value = 1 / head->prev->value;
-	head->prev->value = -100 + rand() % 102 + head->prev->value;
-	head->prev->next = head;
-	head->prev->prev = 0;
-	return head->prev;
-}
-
-
-
-void addBeforeValue(DLIST *head, float value_, float newValue)
-{
-	DLIST* tmp = head;
-	while (tmp->next->value != value_)
-	{
-		tmp = tmp->next;
-	}
-	DLIST* curr = tmp->next;
-	tmp->next = (DLIST*)malloc(sizeof(DLIST));
-	tmp->next->value = newValue;
-	tmp->next->prev = tmp;
-	tmp->next->next = curr;
-	curr->prev = tmp->next;
-}
-
-
-
-void addBeforeCurrent(DLIST *current, int value_)
-{
-	DLIST *currPrev = current->prev;
-	currPrev->next = (DLIST*)malloc(sizeof(DLIST));
-	currPrev->next->value = value_;
-	currPrev->next->next = current;
-	currPrev->next->prev = currPrev;
-	current->prev = currPrev->next;
-}
-
-
-
-DLIST* deleteByPointer(DLIST *head)
-{
-	DLIST *p;
-	p = NULL;
-	DLIST *prev, *next;
-	prev = head->prev;
-	next = head->next;
-	if (prev != NULL)
-	{
-		prev->next = head->next;
-	}
-	else
-	{
-		p = next;
-	}
-	if (next != NULL)
-	{
-		next->prev = head->prev;
-	}
-	else
-	{
-		p = prev;
-	}
-	free(head);
-	return p;
-}
-
-
-
-void swapTwoElement(DLIST *list1, DLIST *list2)
-{
-	float n;
-	n = list1->value;
-	list1->value = list2->value;
-	list2->value = n;
-}
-
-
-
-DLIST* findByValue(DLIST *head, float value_)
-{
-	DLIST* tmp = head;
-	while (tmp->value != value_)
-	{
-		tmp = tmp->next;
-	}
-	return tmp;
-}
-
-
-
-int Proverka(DLIST *head, float n)
-{
-	int k = 0;
-	while (1)
-	{
-		if (head->value == n)
-		{
-			k = 1;
-			break;
-		}
-		if (head->next == 0)
-		{
-			break;
-		}
-		head = head->next;
-	}
-	return k;
-}
-
-
-
-DLIST* deleteByValue(DLIST *head, float value_)
-{
-	DLIST *p;
-	p = NULL;
-	while (head->value != value_)
-	{
-		head = head->next;
-	}
-	DLIST *prev, *next;
-	prev = head->prev;
-	next = head->next;
-	if (prev != NULL)
-	{
-		prev->next = head->next;
-	}
-	else
-	{
-		p = next;
-	}
-	if (next != NULL)
-	{
-		next->prev = head->prev;
-	}
-	else
-	{
-		p = prev;
-	}
-	free(head);
-	return p;
-}
-
-
-
-DLIST* splice(DLIST* left, DLIST* right, DLIST* position)
-{
-	if (left->next == right)
-	{
-		return NULL;
-	}
-	else
-	{
-		DLIST *p = NULL;
-		if (position->next != NULL)
-		{
-			right->prev->next = position->next;
-			left->next->prev = position;
-			position->next->prev = right->prev;
-			position->next = left->next;
-			left->next = right;
-			right->prev = left;
-		}
-		else
-		{
-			p = right->prev;
-			right->prev->next = NULL;
-			left->next->prev = position;
-			position->next = left->next;
-			left->next = right;
-			right->prev = left;
-		}
-		return p;
-	}
-}
-
-
+#include"Functions.h"
+DLIST *Q, *W;
 
 int main()
 {
@@ -258,6 +11,7 @@ int main()
 	int i, m;
 
 	DLIST *head = (DLIST*)malloc(sizeof(DLIST)), *tail = (DLIST*)malloc(sizeof(DLIST));
+	DLIST *head2 = (DLIST*)malloc(sizeof(DLIST)), *tail2 = (DLIST*)malloc(sizeof(DLIST));
 	head->value = 1 + rand() % 100;
 	head->value = 1 / head->value;
 	head->value = -100 + rand() % 102 + head->value;
@@ -435,12 +189,48 @@ int main()
 			system("pause");
 			exit(1);
 		}
-		swapTwoElement(findByValue(head, n), findByValue(head, newn));
+		if ((findByValue(head, n) == head && findByValue(head, newn) == tail) || (findByValue(head, n) == tail && findByValue(head, newn) == head))
+		{
+			DLIST *next1;
+			head->next->prev = tail;
+			tail->prev->next = head;
+			next1 = head->next;
+			head->next = NULL;
+			head->prev = tail->prev;
+			tail->next = next1;
+			tail->prev = NULL;
+			next1 = head;
+			head = tail;
+			tail = next1;
+		}
+		else
+		{
+			if (findByValue(head, n) == head)
+			{
+				head = swapTwoElement(findByValue(head, n), findByValue(head, newn), head, tail);
+			}
+			else if(findByValue(head, newn) == head)
+			{
+				head = swapTwoElement(findByValue(head, n), findByValue(head, newn), head, tail);
+			}
+			else if (findByValue(head, n) == tail)
+			{
+				tail = swapTwoElement(findByValue(head, n), findByValue(head, newn), head, tail);
+			}
+			else if (findByValue(head, newn) == tail)
+			{
+				tail = swapTwoElement(findByValue(head, n), findByValue(head, newn), head, tail);
+			}
+			else
+			{
+				swapTwoElement(findByValue(head, n), findByValue(head, newn), head, tail);
+			}
+		}
+		
 		outputToRight(head);
 		outputToLeft(tail);
 		break;
 	case 6:
-		DLIST *head2 = (DLIST*)malloc(sizeof(DLIST)), *tail2 = (DLIST*)malloc(sizeof(DLIST));
 		head2->value = 1 + rand() % 100;
 		head2->value = 1 / head2->value;
 		head2->value = -100 + rand() % 102 + head2->value;
