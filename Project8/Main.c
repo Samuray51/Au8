@@ -1,11 +1,8 @@
 #include"Functions.h"
-DLIST *Q, *W;
+
 
 int main()
 {
-	setlocale(LC_ALL, "RUS");
-	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
 	srand((unsigned int)time(0));
 	float n, newn, pos;
 	int i, m;
@@ -36,17 +33,17 @@ int main()
 	outputToLeft(tail);
 
 	printf("\n");
-	printf("Введите 1, чтобы запустить функцию addBeforeValue.\n");
-	printf("Введите 2, чтобы запустить функцию addBeforeCurrent.\n");
-	printf("Введите 3, чтобы запустить функцию deleteByValue.\n");
-	printf("Введите 4, чтобы запустить функцию deleteByPointer.\n");
-	printf("Введите 5, чтобы запустить функцию swapTwoElement.\n");
-	printf("Введите 6, чтобы запустить функцию splice.\n");
+	printf("Enter 1 to start the function addBeforeValue.\n");
+	printf("Enter 2 to start the function addBeforeCurrent.\n");
+	printf("Enter 3 to start the function deleteByValue.\n");
+	printf("Enter 4 to start the function deleteByPointer.\n");
+	printf("Enter 5 to start the function swapTwoElement.\n");
+	printf("Enter 6 to start the function splice.\n");
 	scanf_s("%d", &m);
 	switch (m)
 	{
 	case 1:
-		printf("Введите число перед которым появиться число:\n");
+		printf("Enter a number before which the number will appear:\n");
 		scanf_s("%f", &n);
 		newn = 1 + rand() % 100;
 		newn = 1 / newn;
@@ -78,12 +75,12 @@ int main()
 			}
 			else
 			{
-				printf("Нет такого числа!\n");
+				printf("There is no such number!\n");
 			}
 		}
 		break;
 	case 2:
-		printf("Введите число перед которым появиться число:\n");
+		printf("Enter a number before which the number will appear:\n");
 		scanf_s("%f", &n);
 		newn = 1 + rand() % 100;
 		newn = 1 / newn;
@@ -115,12 +112,12 @@ int main()
 			}
 			else
 			{
-				printf("Нет такого числа!\n");
+				printf("There is no such number!\n");
 			}
 		}
 		break;
 	case 3:
-		printf("Введите число, которое хотите удалить:\n");
+		printf("Enter the number you want to delete:\n");
 		scanf_s("%f", &n);
 		m = Proverka(head, n);
 		if (m == 1)
@@ -142,11 +139,11 @@ int main()
 		}
 		else
 		{
-			printf("Нет такого числа!\n");
+			printf("There is no such number!\n");
 		}
 		break;
 	case 4:
-		printf("Введите число, которое хотите удалить:\n");
+		printf("Enter the number you want to delete:\n");
 		scanf_s("%f", &n);
 		m = Proverka(head, n);
 		if (m == 1)
@@ -168,24 +165,24 @@ int main()
 		}
 		else
 		{
-			printf("Нет такого числа!\n");
+			printf("There is no such number!\n");
 		}
 		break;
 	case 5:
-		printf("Введите 2 числа, которые хотите поменять местами.\n");
+		printf("Enter the 2 numbers you want to swap.\n");
 		scanf_s("%f", &n);
 		scanf_s("%f", &newn);
 		m = Proverka(head, n);
 		if(m != 1)
 		{
-			printf("Нет такого числа!\n");
+			printf("There is no such number!\n");
 			system("pause");
 			exit(1);
 		}
 		m = Proverka(head, newn);
 		if (m != 1)
 		{
-			printf("Нет такого числа!\n");
+			printf("There is no such number!\n");
 			system("pause");
 			exit(1);
 		}
@@ -242,7 +239,7 @@ int main()
 		tail2->prev = head2;
 		tail2->next = 0;
 
-		printf("Второй список:\n");
+		printf("Second list:\n");
 		for (i = 0; i < 1; i++)
 		{
 			tail2 = addToRight(tail2);
@@ -254,30 +251,30 @@ int main()
 		outputToRight(head2);
 		outputToLeft(tail2);
 
-		printf("Введите число, после которого будет вырезан список.\n");
+		printf("Enter the number after which the list will be cut.\n");
 		scanf_s("%f", &n);
-		printf("Введите число, до которого будет вырезан список.\n");
+		printf("Enter the number to which the list will be cut.\n");
 		scanf_s("%f", &newn);
-		printf("Введите число, после которого будет вставлена часть первого списка во второй список.\n");
+		printf("Enter the number after which part of the first list will be inserted into the second list.\n");
 		scanf_s("%f", &pos);
 		m = Proverka(head, n);
 		if (m != 1)
 		{
-			printf("Нет такого числа!\n");
+			printf("There is no such number!\n");
 			system("pause");
 			exit(1);
 		}
 		m = Proverka(head, newn);
 		if (m != 1)
 		{
-			printf("Нет такого числа!\n");
+			printf("There is no such number!\n");
 			system("pause");
 			exit(1);
 		}
 		m = Proverka(head2, pos);
 		if (m != 1)
 		{
-			printf("Нет такого числа!\n");
+			printf("There is no such number!\n");
 			system("pause");
 			exit(1);
 		}
@@ -287,10 +284,10 @@ int main()
 		{
 			tail2 = P;
 		}
-		printf("Первый список:\n");
+		printf("The first list:\n");
 		outputToRight(head);
 		outputToLeft(tail);
-		printf("Второй список:\n");
+		printf("Second list:\n");
 		outputToRight(head2);
 		outputToLeft(tail2);
 		break;

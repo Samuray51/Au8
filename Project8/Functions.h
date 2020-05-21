@@ -3,8 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <locale.h>
-#include <windows.h>
+
 struct DList
 {
 	float value;

@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <locale.h>
-#include <windows.h>
+
 struct DList
 {
 	float value;
@@ -15,7 +14,7 @@ typedef struct DList DLIST;
 
 void outputToRight(DLIST *head)
 {
-	printf("Вывод с начала: ");
+	printf("Output from head: ");
 	while (head != 0)
 	{
 		if (head->next != 0)
@@ -34,7 +33,7 @@ void outputToRight(DLIST *head)
 
 void outputToLeft(DLIST *tail)
 {
-	printf("Вывод с конца: ");
+	printf("Output from tail: ");
 	while (tail != 0)
 	{
 		if (tail->prev != 0)
@@ -225,7 +224,7 @@ int Proverka(DLIST *head, float n)
 	int k = 0;
 	while (1)
 	{
-		if (head->value == n)
+		if (head->value - n == 0)
 		{
 			k = 1;
 			break;
