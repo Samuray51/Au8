@@ -273,8 +273,44 @@ DLIST* deleteByValue(DLIST *head, float value_)
 
 
 
-DLIST* splice(DLIST* left, DLIST* right, DLIST* position)
+DLIST* splice(DLIST *one, DLIST* left, DLIST* right,DLIST *two, DLIST* position)
 {
+	int m;
+	DLIST *one1, *two1;
+	one1 = one;
+	two1 = two;
+	while (one1 != NULL)
+	{
+		if (one1->next == position)
+		{
+			m = 0;
+			break;
+		}
+		if (one1->next == left)
+		{
+			m = 0;
+		}
+		if (one1->next == right)
+		{
+			m = 1;
+		}
+		one1 = one1->next;
+	}
+	while (two1 != NULL)
+	{
+		if (two1->next == left || two1->next == right)
+		{
+			m = 0;
+			break;
+		}
+		two1 = two1->next;
+	}
+	if (m == 0)
+	{
+		printf("Incorrectly submitted parameters!\n");
+		system("pause");
+		exit(1);
+	}
 	if (left->next == right)
 	{
 		return NULL;

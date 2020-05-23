@@ -279,7 +279,7 @@ int main()
 			exit(1);
 		}
 		DLIST *P;
-		P = splice(findByValue(head, n), findByValue(head, newn), findByValue(head2, pos));
+		P = splice(head, findByValue(head, n), findByValue(head, newn), head2, findByValue(head2, pos));
 		if (P != NULL)
 		{
 			tail2 = P;

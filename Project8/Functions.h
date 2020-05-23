@@ -24,7 +24,7 @@ DLIST* swapTwoElement(DLIST *list1, DLIST *list2, DLIST *head, DLIST *tail);
 DLIST* findByValue(DLIST *head, float value_);
 int Proverka(DLIST *head, float n);
 DLIST* deleteByValue(DLIST *head, float value_);
-DLIST* splice(DLIST* left, DLIST* right, DLIST* position);
+DLIST* splice(DLIST *one, DLIST* left, DLIST* right, DLIST *two, DLIST* position);
 #endif
 
 
